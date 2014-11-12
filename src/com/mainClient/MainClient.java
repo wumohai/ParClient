@@ -1,5 +1,6 @@
 package com.mainClient;
 
+import java.awt.Desktop;
 import java.io.*;
 
 import com.demo.File.ReadFile;
@@ -55,6 +56,14 @@ public class MainClient {
 	private String getFilePath(FileType fileType) {
 		return fileType.getFileType() + "/" + fileType.getFileName();
 	}
+	private void openLocalFile(String path) {
+		try {
+			Desktop.getDesktop().open(new File(path));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) {
 
@@ -67,9 +76,9 @@ public class MainClient {
 		FileType fileType = null;
 
 		while (true) {
-			System.out.println("----------------------------");
+			System.out.println("--------------------------------------------------------");
 			mainClient.Menu();
-			System.out.println("----------------------------");
+			System.out.println("--------------------------------------------------------");
 			System.out.println("请输入您的选择或者命令：");
 			try {
 
@@ -84,6 +93,9 @@ public class MainClient {
 					fixCommandString = mainClient.analysisCommandInter
 							.fixCommand(cmdString);// 转化成系统命令
 					if (fixCommandString == null) {
+						
+						
+						
 						System.out.println("\"" + cmdString + "\""
 								+ " 命令不存在，请重新输入：");
 						System.out.println("----------------------------");
@@ -144,6 +156,8 @@ public class MainClient {
 					}
 					mainClient.readFile.WriteFileByBytes(fileType,
 							retContentBean.getRetbyte());
+					String path = mainClient.getFilePath(fileType);
+					mainClient.openLocalFile(path);
 
 				}// end if (fileTypesString.equalsIgnoreCase("image"))
 				else if (fileTypesString.equalsIgnoreCase("help")) {
@@ -171,6 +185,8 @@ public class MainClient {
 					
 					mainClient.readFile.WriteFileByBytes(fileType,
 							retContentBean.getRetbyte());
+					String path = mainClient.getFilePath(fileType);
+					mainClient.openLocalFile(path);
 				}
 				System.out.println("按回车键返回");
 				strin.readLine();
