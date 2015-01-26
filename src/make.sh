@@ -1,3 +1,5 @@
 wsdl2java http://127.0.0.1:9000/MenuImp?wsdl
 wsdl2java http://127.0.0.1:9000/AnalysisCommandImp?wsdl
 wsdl2java http://127.0.0.1:9000/ContentFacadeImp?wsdl
+wsdl2java http://127.0.0.1:9001/LoginImp?wsdl
+wsdl2java http://127.0.0.1:9001/RegisterImp?wsdl
